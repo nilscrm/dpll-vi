@@ -1,0 +1,8 @@
+c Forces x1=x2=true, then x3=true, x4=true, but forbids (x3 ∧ x4)
+p cnf 4 6
+1 2 0
+-1 2 0
+1 -2 0
+-1 3 0
+-2 4 0
+-3 -4 0

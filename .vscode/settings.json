@@ -1,0 +1,15 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "vine.entrypoints": [
+    "dpll/dpll.vi",
+    "dpll/main.vi",
+  ],
+  "rust-analyzer.check.command": "clippy",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2
+}

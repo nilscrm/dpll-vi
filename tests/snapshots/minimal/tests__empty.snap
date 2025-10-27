@@ -1,0 +1,35 @@
+---
+source: tests/tests.rs
+info:
+  program: vine
+  args:
+    - run
+    - dpll/main.vi
+    - "--breadth-first"
+---
+success: true
+exit_code: 0
+----- stdout -----
+satisfiable
+evaluation under model: true
+
+----- stderr -----
+
+Interactions
+  Total                3_777
+    Depth              1_777
+    Breadth                2
+  Annihilate           1_923
+  Commute                 25
+  Copy                   458
+  Erase                  487
+  Expand                 299
+  Call                   409
+  Branch                 176
+
+Memory
+  Heap                 3_088 B
+  Allocated           80_128 B
+  Freed               80_128 B
+
+[Performance...]

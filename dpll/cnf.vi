@@ -1,0 +1,57 @@
+
+use dpll::{Clause, Formula, Literal};
+
+pub fn parse_cnf(&io: &IO) -> Result[Formula, String] {
+  let num_clauses = read_header(&io)?;
+  let clauses = [];
+  while num_clauses > 0 {
+    let Some(line) = io.read_line() else {
+      return Err("Unexpected end of file, still expecting {num_clauses} clauses");
+    };
+    if line.starts_with(&"c") {
+      continue;
+    }
+    clauses.push_back(parse_cnf_clause(line)?);
+    num_clauses -= 1;
+  }
+  Ok(Formula(clauses))
+}
+
+fn read_header(&io: &IO) -> Result[N32, String] {
+  loop {
+    let Some(line) = io.read_line() else {
+      return Err("Unexpected end of file, still expecting header");
+    };
+    if line.starts_with(&"c") {
+      continue;
+    }
+    if line.starts_with(&"p") {
+      let Some(num_clauses_str) = line.split_trim(" ").into_iter().last() else {
+        return Err("Invalid header: \"{line}\"");
+      };
+      let Some(num_clauses) = N32::parse(num_clauses_str) else {
+        return Err("Invalid number of clauses: \"{num_clauses_str}\"");
+      };
+      return Ok(num_clauses);
+    }
+    return Err("Invalid header: \"{line}\"");
+  }
+}
+
+fn parse_cnf_clause(cnf: String) -> Result[Clause, String] {
+  let lits = cnf.split_trim(" ");
+  let clause = [];
+  for lit in lits.slice(..(lits.len() - 1)).into_iter() {
+    clause.push_back(parse_cnf_literal(lit)?);
+  }
+  Ok(Clause(clause))
+}
+
+fn parse_cnf_literal(cnf: String) -> Result[Literal, String] {
+  match I32::parse(cnf) {
+    Some(int) { Ok(Literal(int)) }
+    None {
+      return Err("Invalid literal \"{cnf}\"");
+    }
+  }
+}

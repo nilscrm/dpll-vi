@@ -1,0 +1,15 @@
+{
+    "version": "0.2",
+    "dictionaries": [
+        "rust"
+    ],
+    "words": [
+        "disj",
+        "dpll",
+        "insta",
+        "rstest",
+        "satlib",
+        "unsat"
+    ],
+    "useGitignore": true
+}

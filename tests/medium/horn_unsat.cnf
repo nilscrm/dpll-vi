@@ -1,0 +1,8 @@
+c a -> b -> c -> d and ¬d, with a true
+c 1=a 2=b 3=c 4=d
+p cnf 4 5
+1 0
+-1 2 0
+-2 3 0
+-3 4 0
+-4 0
