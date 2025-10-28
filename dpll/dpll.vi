@@ -58,7 +58,7 @@ pub mod Formula {
         }
       }
 
-      if formula.find_pure() is Some(literal) {
+      for literal in formula.find_pure().into_iter() {
         assignment.insert(literal.variable(), literal.is_positive());
         if formula.assign(literal) is Some(new_formula) {
           formula = new_formula;
@@ -103,8 +103,7 @@ pub mod Formula {
     })
   }
 
-  // TODO: should just return a list of pure literals
-  fn .find_pure(&self: &Formula) -> Option[Literal] {
+  fn .find_pure(&self: &Formula) -> List[Literal] {
     let occurrences = Map::empty[N32, (Bool, Bool)];
     for &clause in self!.iter() {
       for &literal in clause!.iter() {
@@ -117,16 +116,16 @@ pub mod Formula {
       }
     }
 
-    let iter = occurrences.into_iter();
-    for (var, (pos, neg)) in iter {
+    let pure_literals = [];
+    for (var, (pos, neg)) in occurrences.into_iter() {
       if pos && !neg {
-        return Some(Literal::pos(var));
+        pure_literals.push_back(Literal::pos(var));
       }
       if neg && !pos {
-        return Some(Literal::neg(var));
+        pure_literals.push_back(Literal::neg(var));
       }
     }
-    None
+    pure_literals
   }
 
   fn .choose_literal(&self: &Formula) -> Option[Literal] {

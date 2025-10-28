@@ -12,6 +12,7 @@ exit_code: 0
 ----- stdout -----
 satisfiable
 evaluation under model: true
+var 1 = false
 var 2 = true
 var 3 = true
 var 4 = false
@@ -26,7 +27,6 @@ var 12 = true
 var 13 = true
 var 14 = false
 var 15 = true
-var 16 = false
 var 17 = true
 var 18 = false
 var 19 = false
@@ -59,25 +59,26 @@ var 45 = false
 var 46 = false
 var 47 = false
 var 48 = true
+var 49 = true
 var 50 = false
 
 ----- stderr -----
 
 Interactions
-  Total           84_035_360
-    Depth         43_005_861
+  Total           80_941_988
+    Depth         41_531_815
     Breadth                1
-  Annihilate      47_463_290
-  Commute            117_790
-  Copy             8_041_801
-  Erase            9_589_561
-  Expand           6_668_576
-  Call             7_693_519
-  Branch           4_460_823
+  Annihilate      45_710_592
+  Commute            118_414
+  Copy             7_708_173
+  Erase            9_247_348
+  Expand           6_443_073
+  Call             7_411_154
+  Branch           4_303_234
 
 Memory
-  Heap               609_664 B
-  Allocated    1_863_511_552 B
-  Freed        1_863_511_552 B
+  Heap               609_856 B
+  Allocated    1_793_778_336 B
+  Freed        1_793_778_336 B
 
 [Performance...]

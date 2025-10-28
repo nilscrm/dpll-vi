@@ -33,7 +33,7 @@ var 18 = false
 var 19 = false
 var 20 = false
 var 21 = true
-var 22 = false
+var 22 = true
 var 23 = true
 var 24 = true
 var 25 = true
@@ -46,11 +46,9 @@ var 31 = true
 var 32 = false
 var 33 = false
 var 34 = false
-var 35 = true
 var 36 = false
 var 37 = false
 var 38 = true
-var 39 = false
 var 40 = false
 var 41 = true
 var 42 = false
@@ -60,25 +58,26 @@ var 45 = false
 var 46 = true
 var 47 = false
 var 48 = true
+var 49 = false
 var 50 = false
 
 ----- stderr -----
 
 Interactions
-  Total           67_081_818
-    Depth         34_444_883
+  Total           64_781_485
+    Depth         33_335_136
     Breadth                1
-  Annihilate      37_889_771
-  Commute             91_626
-  Copy             6_400_093
-  Erase            7_656_921
-  Expand           5_334_313
-  Call             6_144_831
-  Branch           3_564_263
+  Annihilate      36_586_230
+  Commute             91_868
+  Copy             6_151_747
+  Erase            7_403_421
+  Expand           5_167_030
+  Call             5_933_940
+  Branch           3_447_249
 
 Memory
-  Heap               542_672 B
-  Allocated    1_487_088_848 B
-  Freed        1_487_088_848 B
+  Heap               542_864 B
+  Allocated    1_435_204_720 B
+  Freed        1_435_204_720 B
 
 [Performance...]

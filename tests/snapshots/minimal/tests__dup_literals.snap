@@ -13,24 +13,25 @@ exit_code: 0
 satisfiable
 evaluation under model: true
 var 1 = true
+var 2 = false
 
 ----- stderr -----
 
 Interactions
-  Total                7_495
-    Depth              3_454
+  Total                8_197
+    Depth              3_589
     Breadth                2
-  Annihilate           3_817
+  Annihilate           4_195
   Commute                 69
-  Copy                   908
-  Erase                  983
-  Expand                 593
-  Call                   763
-  Branch                 362
+  Copy                   952
+  Erase                1_069
+  Expand                 664
+  Call                   846
+  Branch                 402
 
 Memory
-  Heap                 3_440 B
-  Allocated          158_880 B
-  Freed              158_880 B
+  Heap                 3_568 B
+  Allocated          173_936 B
+  Freed              173_936 B
 
 [Performance...]
