@@ -50,22 +50,14 @@ pub mod Formula {
 
       if formula.find_unit() is Some(literal) {
         assignment.insert(literal.variable(), literal.is_positive());
-        if formula.assign(literal) is Some(new_formula) {
-          formula = new_formula;
-          continue;
-        } else {
-          return None;
-        }
+        formula = formula.assign(literal);
+        continue;
       }
 
       for literal in formula.find_pure().into_iter() {
         assignment.insert(literal.variable(), literal.is_positive());
-        if formula.assign(literal) is Some(new_formula) {
-          formula = new_formula;
-          continue;
-        } else {
-          return None;
-        }
+        formula = formula.assign(literal);
+        continue;
       }
 
       break;
@@ -75,19 +67,17 @@ pub mod Formula {
       return Some(assignment);
     };
 
-    if formula.assign(branch_literal) is Some(next_formula) {
-      let new_assignment = assignment.fork();
-      new_assignment.insert(branch_literal.variable(), branch_literal.is_positive());
-      if next_formula.dpll(new_assignment) is Some(solution) {
-        return Some(solution);
-      }
+    let pos_formula = formula.assign(branch_literal);
+    let new_assignment = assignment.fork();
+    new_assignment.insert(branch_literal.variable(), branch_literal.is_positive());
+    if pos_formula.dpll(new_assignment) is Some(solution) {
+      return Some(solution);
     }
 
-    if formula.assign(branch_literal.negated()) is Some(next_formula) {
-      assignment.insert(branch_literal.variable(), !branch_literal.is_positive());
-      if next_formula.dpll(assignment) is Some(solution) {
-        return Some(solution);
-      }
+    let neg_formula = formula.assign(branch_literal.negated());
+    new_assignment.insert(branch_literal.variable(), !branch_literal.is_positive());
+    if neg_formula.dpll(new_assignment) is Some(solution) {
+      return Some(solution);
     }
 
     None
@@ -137,7 +127,7 @@ pub mod Formula {
     None
   }
 
-  fn .assign(self: Formula, literal: Literal) -> Option[Formula] {
+  fn .assign(self: Formula, literal: Literal) -> Formula {
     let new_clauses = [];
     for clause in self!.into_iter() {
       if clause!.contains(&literal) {
@@ -146,12 +136,9 @@ pub mod Formula {
 
       let new_clause = clause!.filter(fn* (&lit) { lit != literal.negated() });
 
-      if new_clause.len() == 0 {
-        return None;
-      }
       new_clauses.push_back(Clause(new_clause));
     }
-    Some(Formula(new_clauses))
+    Formula(new_clauses)
   }
 
   pub impl show: Show[Formula];

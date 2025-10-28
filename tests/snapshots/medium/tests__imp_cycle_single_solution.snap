@@ -19,20 +19,20 @@ var 3 = true
 ----- stderr -----
 
 Interactions
-  Total               20_791
-    Depth              9_596
+  Total               20_756
+    Depth              9_226
     Breadth                2
-  Annihilate          10_825
-  Commute                189
-  Copy                 2_401
-  Erase                2_708
-  Expand               1_667
-  Call                 1_949
-  Branch               1_052
+  Annihilate          10_804
+  Commute                192
+  Copy                 2_400
+  Erase                2_701
+  Expand               1_661
+  Call                 1_948
+  Branch               1_050
 
 Memory
-  Heap                 6_048 B
-  Allocated          444_192 B
-  Freed              444_192 B
+  Heap                 6_416 B
+  Allocated          443_664 B
+  Freed              443_664 B
 
 [Performance...]
