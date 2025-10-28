@@ -10,12 +10,6 @@ pub struct* Formula(List[Clause]);
 pub mod cnf;
 
 pub fn main(&io: &IO) {
-  // let formula = Formula([
-  //   Clause([Literal(+1), Literal(-2)]),
-  //   Clause([Literal(+2)]),
-  //   Clause([Literal(-1), Literal(+2)]),
-  // ]);
-
   let formula = Formula([
     Clause([Literal(+1), Literal(-2)]),
     Clause([Literal(-2)]),
@@ -41,7 +35,7 @@ pub mod Formula {
   }
 
   pub fn .evaluate(&self: &Formula, &assignment: &Model) -> Bool {
-    self.iter().all(fn* (&clause: &Clause) { clause.evaluate(&assignment) })
+    self!.iter().all(fn* (&clause: &Clause) { clause.evaluate(&assignment) })
   }
 
   pub fn .dpll(formula: Formula, assignment: Model) -> Option[Model] {
@@ -50,7 +44,7 @@ pub mod Formula {
         return Some(assignment);
       }
 
-      if formula.iter().any(Clause::is_empty) {
+      if formula!.iter().any(Clause::is_empty) {
         return None;
       }
 
@@ -112,8 +106,8 @@ pub mod Formula {
   // TODO: should just return a list of pure literals
   fn .find_pure(&self: &Formula) -> Option[Literal] {
     let occurrences = Map::empty[N32, (Bool, Bool)];
-    for &clause in self.iter() {
-      for &literal in clause.iter() {
+    for &clause in self!.iter() {
+      for &literal in clause!.iter() {
         let &(pos, neg) = occurrences.at_or_insert(literal.variable(), (false, false));
         if literal.is_positive() {
           pos = true;
@@ -136,8 +130,8 @@ pub mod Formula {
   }
 
   fn .choose_literal(&self: &Formula) -> Option[Literal] {
-    for &clause in self.iter() {
-      for &literal in clause.iter() {
+    for &clause in self!.iter() {
+      for &literal in clause!.iter() {
         return Some(literal);
       }
     }
@@ -162,10 +156,6 @@ pub mod Formula {
   }
 
   pub impl show: Show[Formula];
-
-  pub fn .iter(&Formula(clauses)) -> List::Iter[Clause] {
-    clauses.iter()
-  }
 }
 
 pub struct* Model(pub Map[N32, Bool]);
@@ -182,7 +172,7 @@ pub mod Model {
 
 pub mod Clause {
   pub fn .evaluate(&self: &Clause, &assignment: &Model) -> Bool {
-    self.iter().any(fn* (&literal: &Literal) { literal.evaluate(&assignment) })
+    self!.iter().any(fn* (&literal: &Literal) { literal.evaluate(&assignment) })
   }
 
   pub fn .is_empty(&self: &Clause) -> Bool {
@@ -191,14 +181,6 @@ pub mod Clause {
 
   pub fn .is_unit(&self: &Clause) -> Bool {
     self!.len() == 1
-  }
-
-  pub fn .iter(&self: &Clause) -> List::Iter[Literal] {
-    self!.iter()
-  }
-
-  pub fn .into_iter(&self: &Clause) -> List::IntoIter[Literal] {
-    self!.into_iter()
   }
 
   pub fn .first_literal(&self: &Clause) -> Option[Literal] {
