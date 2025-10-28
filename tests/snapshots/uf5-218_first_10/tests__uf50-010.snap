@@ -63,20 +63,20 @@ var 50 = true
 ----- stderr -----
 
 Interactions
-  Total           18_086_051
-    Depth          9_163_269
+  Total           16_982_518
+    Depth          8_655_189
     Breadth                1
-  Annihilate      10_182_819
-  Commute             35_537
-  Copy             1_764_872
-  Erase            2_075_257
-  Expand           1_423_711
-  Call             1_649_803
-  Branch             954_052
+  Annihilate       9_557_910
+  Commute             35_572
+  Copy             1_644_404
+  Erase            1_952_776
+  Expand           1_344_626
+  Call             1_548_906
+  Branch             898_324
 
 Memory
-  Heap               617_216 B
-  Allocated      400_923_616 B
-  Freed          400_923_616 B
+  Heap               617_408 B
+  Allocated      376_039_424 B
+  Freed          376_039_424 B
 
 [Performance...]
