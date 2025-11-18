@@ -16,20 +16,20 @@ evaluation under model: true
 ----- stderr -----
 
 Interactions
-  Total                3_777
-    Depth              1_777
+  Total                3_783
+    Depth              1_785
     Breadth                2
-  Annihilate           1_923
+  Annihilate           1_926
   Commute                 25
   Copy                   458
   Erase                  487
-  Expand                 299
-  Call                   409
-  Branch                 176
+  Expand                 300
+  Call                   410
+  Branch                 177
 
 Memory
   Heap                 3_088 B
-  Allocated           80_128 B
-  Freed               80_128 B
+  Allocated           80_256 B
+  Freed               80_256 B
 
 [Performance...]
