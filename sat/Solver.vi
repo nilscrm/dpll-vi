@@ -1,0 +1,126 @@
+
+use std::data::Map;
+use sat::Formula::{Clause, Literal};
+
+pub struct* Solver({ model: Model });
+
+pub mod Solver {
+  pub fn solve(&formula: &Formula) -> Option[Model] {
+    let solver = Solver({ model: Model::empty });
+    solver.solve_(formula)
+  }
+
+  fn .solve_(&self: &Solver, formula: Formula) -> Option[Model] {
+    let &Solver({ model }) = &self;
+    loop {
+      if formula.is_empty() {
+        return Some(model);
+      }
+
+      if formula!.iter().any(Clause::is_empty) {
+        return None;
+      }
+
+      if formula.find_unit() is Some(literal) {
+        model.insert(literal.variable(), literal.is_positive());
+        formula = formula.assign(literal);
+        continue;
+      }
+
+      for literal in formula.find_pure().into_iter() {
+        model.insert(literal.variable(), literal.is_positive());
+        formula = formula.assign(literal);
+        continue;
+      }
+
+      break;
+    }
+
+    let Some(branch_literal) = formula.choose_literal() else {
+      return Some(model);
+    };
+
+    let pos_formula = formula.assign(branch_literal);
+    let new_solver = self.fork();
+    new_solver.model.insert(branch_literal.variable(), branch_literal.is_positive());
+    if new_solver.solve_(pos_formula) is Some(solution) {
+      return Some(solution);
+    }
+
+    let neg_formula = formula.assign(branch_literal.negated());
+    new_solver.model.insert(branch_literal.variable(), !branch_literal.is_positive());
+    if new_solver.solve_(neg_formula) is Some(solution) {
+      return Some(solution);
+    }
+
+    None
+  }
+
+  fn .find_unit(&self: &Formula) -> Option[Literal] {
+    self!.find(fn* (&clause: &Clause) { clause.is_unit() }).map(fn? (&clause: &Clause) {
+      clause!.get(0).unwrap()
+    })
+  }
+
+  fn .find_pure(&self: &Formula) -> List[Literal] {
+    let occurrences = Map::empty[N32, (Bool, Bool)];
+    for &clause in self!.iter() {
+      for &literal in clause!.iter() {
+        let &(pos, neg) = occurrences.at_or_insert(literal.variable(), (false, false));
+        if literal.is_positive() {
+          pos = true;
+        } else {
+          neg = true;
+        }
+      }
+    }
+
+    let pure_literals = [];
+    for (var, (pos, neg)) in occurrences.into_iter() {
+      if pos && !neg {
+        pure_literals.push_back(Literal::pos(var));
+      }
+      if neg && !pos {
+        pure_literals.push_back(Literal::neg(var));
+      }
+    }
+    pure_literals
+  }
+
+  fn .choose_literal(&self: &Formula) -> Option[Literal] {
+    for &clause in self!.iter() {
+      for &literal in clause!.iter() {
+        return Some(literal);
+      }
+    }
+    None
+  }
+
+  fn .assign(self: Formula, literal: Literal) -> Formula {
+    let new_clauses = [];
+    for clause in self!.into_iter() {
+      if clause!.contains(&literal) {
+        continue;
+      }
+
+      let new_clause = clause!.filter(fn* (&lit) { lit != literal.negated() });
+
+      new_clauses.push_back(Clause(new_clause));
+    }
+    Formula(new_clauses)
+  }
+
+  pub impl show: Show[Formula];
+}
+
+pub struct* Model(pub Map[N32, Bool]);
+
+pub mod Model {
+  pub const empty: Model = Model(Map::empty);
+
+  pub fn .insert(&self: &Model, variable: N32, value: Bool) {
+    self!.insert(variable, value);
+  }
+
+  pub impl show: Show[Model];
+}

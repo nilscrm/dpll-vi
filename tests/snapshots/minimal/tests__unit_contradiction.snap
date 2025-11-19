@@ -4,7 +4,7 @@ info:
   program: vine
   args:
     - run
-    - dpll/main.vi
+    - sat/main.vi
     - "--breadth-first"
 ---
 success: true
@@ -15,20 +15,20 @@ unsatisfiable
 ----- stderr -----
 
 Interactions
-  Total                5_471
-    Depth              2_756
+  Total                5_498
+    Depth              2_761
     Breadth                1
-  Annihilate           2_782
+  Annihilate           2_795
   Commute                 67
-  Copy                   709
-  Erase                  752
-  Expand                 414
-  Call                   484
-  Branch                 263
+  Copy                   713
+  Erase                  756
+  Expand                 416
+  Call                   486
+  Branch                 265
 
 Memory
   Heap                 2_928 B
-  Allocated          115_680 B
-  Freed              115_680 B
+  Allocated          116_224 B
+  Freed              116_224 B
 
 [Performance...]

@@ -8,7 +8,7 @@ fn test_cnf_files(group_name: &str, path: &Path) {
     filters => [(r"Performance\s+Time\s+.*\sms\s+Speed.*IPS", "[Performance...]")] },
   {
     let stdin = File::open(path).unwrap();
-    assert_cmd_snapshot!(path.file_stem().unwrap().to_str().unwrap(), Command::new("vine").args(["run", "dpll/main.vi"]).arg("--breadth-first").stdin(stdin));
+    assert_cmd_snapshot!(path.file_stem().unwrap().to_str().unwrap(), Command::new("vine").args(["run", "sat/main.vi"]).arg("--breadth-first").stdin(stdin));
   });
 }
 

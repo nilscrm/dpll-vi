@@ -4,7 +4,7 @@ info:
   program: vine
   args:
     - run
-    - dpll/main.vi
+    - sat/main.vi
     - "--breadth-first"
 ---
 success: true
@@ -64,20 +64,20 @@ var 50 = false
 ----- stderr -----
 
 Interactions
-  Total           63_315_761
-    Depth         27_826_908
+  Total           63_346_094
+    Depth         27_832_262
     Breadth                2
-  Annihilate      35_938_012
-  Commute             96_820
-  Copy             5_907_154
-  Erase            7_165_478
-  Expand           5_056_102
-  Call             5_826_821
-  Branch           3_325_374
+  Annihilate      35_949_961
+  Commute            101_600
+  Copy             5_915_496
+  Erase            7_169_198
+  Expand           5_056_724
+  Call             5_826_786
+  Branch           3_326_329
 
 Memory
-  Heap               544_752 B
-  Allocated    1_409_333_216 B
-  Freed        1_409_333_216 B
+  Heap               543_248 B
+  Allocated    1_410_020_176 B
+  Freed        1_410_020_176 B
 
 [Performance...]
