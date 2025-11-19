@@ -15,20 +15,20 @@ unsatisfiable
 ----- stderr -----
 
 Interactions
-  Total           67_211_595
-    Depth         29_656_232
+  Total           67_236_818
+    Depth         29_660_260
     Breadth                2
-  Annihilate      38_163_163
-  Commute             99_563
-  Copy             6_275_222
-  Erase            7_584_525
-  Expand           5_359_478
-  Call             6_201_024
-  Branch           3_528_620
+  Annihilate      38_175_540
+  Commute            101_962
+  Copy             6_280_193
+  Erase            7_587_093
+  Expand           5_360_453
+  Call             6_201_848
+  Branch           3_529_729
 
 Memory
-  Heap               482_432 B
-  Allocated    1_496_683_504 B
-  Freed        1_496_683_504 B
+  Heap               481_744 B
+  Allocated    1_497_272_832 B
+  Freed        1_497_272_832 B
 
 [Performance...]
