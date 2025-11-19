@@ -9,6 +9,5 @@ path = "tests/tests.rs"
 
 [dev-dependencies]
 insta = { version = "1.43.2", features = ["filters", "glob"] }
-insta-cmd = "0.6.0"
 rstest = "0.26.1"
 

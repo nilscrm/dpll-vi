@@ -1,0 +1,7 @@
+---
+source: tests/tests.rs
+expression: stdout
+---
+satisfiable
+evaluation under model: true
+var 1 = true

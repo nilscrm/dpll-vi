@@ -1,0 +1,56 @@
+---
+source: tests/tests.rs
+expression: stdout
+---
+satisfiable
+evaluation under model: true
+var 1 = false
+var 2 = false
+var 3 = true
+var 4 = true
+var 5 = false
+var 6 = true
+var 7 = false
+var 8 = false
+var 9 = true
+var 10 = true
+var 11 = true
+var 12 = true
+var 13 = true
+var 14 = false
+var 15 = false
+var 16 = false
+var 17 = false
+var 18 = false
+var 19 = false
+var 20 = true
+var 21 = true
+var 22 = true
+var 23 = false
+var 24 = false
+var 25 = false
+var 26 = false
+var 27 = true
+var 28 = true
+var 29 = true
+var 30 = true
+var 31 = true
+var 32 = false
+var 33 = false
+var 34 = true
+var 35 = true
+var 36 = false
+var 37 = false
+var 38 = false
+var 39 = false
+var 40 = true
+var 41 = true
+var 42 = true
+var 43 = true
+var 44 = false
+var 45 = false
+var 46 = true
+var 47 = true
+var 48 = false
+var 49 = false
+var 50 = true

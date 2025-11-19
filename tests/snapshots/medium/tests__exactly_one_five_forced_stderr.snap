@@ -1,0 +1,22 @@
+---
+source: tests/tests.rs
+expression: stderr
+---
+Interactions
+  Total               78_282
+    Depth             34_793
+    Breadth                2
+  Annihilate          41_727
+  Commute                820
+  Copy                 8_805
+  Erase                9_891
+  Expand               6_163
+  Call                 6_875
+  Branch               4_001
+
+Memory
+  Heap                17_776 B
+  Allocated        1_697_264 B
+  Freed            1_697_264 B
+
+[Performance...]

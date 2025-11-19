@@ -1,6 +1,9 @@
-use insta_cmd::assert_cmd_snapshot;
 use rstest::rstest;
-use std::{fs::File, path::{Path, PathBuf}, process::Command};
+use std::{
+  fs::File,
+  path::{Path, PathBuf},
+  process::Command,
+};
 
 fn test_cnf_files(group_name: &str, path: &Path) {
   insta::with_settings!({
@@ -8,7 +11,19 @@ fn test_cnf_files(group_name: &str, path: &Path) {
     filters => [(r"Performance\s+Time\s+.*\sms\s+Speed.*IPS", "[Performance...]")] },
   {
     let stdin = File::open(path).unwrap();
-    assert_cmd_snapshot!(path.file_stem().unwrap().to_str().unwrap(), Command::new("vine").args(["run", "sat/main.vi"]).arg("--breadth-first").stdin(stdin));
+    let output = Command::new("vine")
+      .args(["run", "sat/main.vi"])
+      .arg("--breadth-first")
+      .stdin(stdin)
+      .output()
+      .expect("Failed to execute command");
+
+    let stdout = String::from_utf8(output.stdout).expect("Failed to convert stdout to string");
+    let stderr = String::from_utf8(output.stderr).expect("Failed to convert stderr to string");
+
+    let name = path.file_stem().unwrap().to_string_lossy();
+    insta::assert_snapshot!(format!("{name}_stdout"), stdout);
+    insta::assert_snapshot!(format!("{name}_stderr"), stderr);
   });
 }
 

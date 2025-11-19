@@ -1,0 +1,11 @@
+---
+source: tests/tests.rs
+expression: stdout
+---
+satisfiable
+evaluation under model: true
+var 1 = false
+var 2 = false
+var 3 = true
+var 4 = false
+var 5 = false
