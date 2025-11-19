@@ -1,0 +1,102 @@
+
+use std::ops::comparison::Eq;
+use std::debug::Show;
+use dpll::Solver::Model;
+
+pub struct* Literal(I32);
+pub struct* Clause(pub List[Literal]);
+pub struct* Formula(pub List[Clause]);
+
+pub mod Formula {
+  pub fn .evaluate(&self: &Formula, &assignment: &Model) -> Bool {
+    self!.iter().all(fn* (&clause: &Clause) { clause.evaluate(&assignment) })
+  }
+
+  pub fn .is_empty(&self: &Formula) -> Bool {
+    self!.len() == 0
+  }
+
+  pub impl show: Show[Formula];
+}
+
+pub mod Clause {
+  pub fn .evaluate(&self: &Clause, &assignment: &Model) -> Bool {
+    self!.iter().any(fn* (&literal: &Literal) { literal.evaluate(&assignment) })
+  }
+
+  pub fn .is_empty(&self: &Clause) -> Bool {
+    self!.len() == 0
+  }
+
+  pub fn .is_unit(&self: &Clause) -> Bool {
+    self!.len() == 1
+  }
+
+  pub fn .first_literal(&self: &Clause) -> Option[Literal] {
+    self!.get(0)
+  }
+
+  pub impl show: Show[Clause];
+}
+
+pub mod Literal {
+  pub fn new(int: I32) -> Literal {
+    if int == +0 {
+      debug::error("0 is not a valid literal");
+      return unsafe::eraser;
+    }
+    Literal(int)
+  }
+
+  pub fn pos(var: N32) -> Literal {
+    Literal(var as I32)
+  }
+
+  pub fn neg(var: N32) -> Literal {
+    Literal(-var as I32)
+  }
+
+  pub fn .evaluate(&self: &Literal, &assignment: &Model) -> Bool {
+    let var = self.variable();
+    let Some(value) = assignment!.get(&var) else {
+      return false;
+    };
+    if self.is_positive() {
+      value
+    } else {
+      !value
+    }
+  }
+
+  pub fn .variable(&Literal(int)) -> N32 {
+    int.abs() as N32
+  }
+
+  pub fn .is_positive(&Literal(int)) -> Bool {
+    int > +0
+  }
+
+  pub fn .negated(&Literal(int)) -> Literal {
+    Literal(-int)
+  }
+
+  pub impl show: Show[Literal] {
+    fn show(&self: &Literal) -> Show {
+      if self.is_positive() {
+        Show::Literal("x{self.variable()}")
+      } else {
+        Show::Literal("¬x{self.variable()}")
+      }
+    }
+  }
+
+  pub impl eq: Eq[Literal] {
+    fn eq(&Literal(self), &Literal(other)) -> Bool {
+      self == other
+    }
+
+    fn ne(&Literal(self), &Literal(other)) -> Bool {
+      self != other
+    }
+  }
+}

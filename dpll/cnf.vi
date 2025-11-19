@@ -1,5 +1,5 @@
 
-use dpll::{Clause, Formula, Literal};
+use dpll::Formula::{Clause, Literal};
 
 pub fn parse_cnf(&io: &IO) -> Result[Formula, String] {
   let num_clauses = read_header(&io)?;
@@ -49,7 +49,7 @@ fn parse_cnf_clause(cnf: String) -> Result[Clause, String] {
 
 fn parse_cnf_literal(cnf: String) -> Result[Literal, String] {
   match I32::parse(cnf) {
-    Some(int) { Ok(Literal(int)) }
+    Some(int) { Ok(Literal::new(int)) }
     None {
       return Err("Invalid literal \"{cnf}\"");
     }

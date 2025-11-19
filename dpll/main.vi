@@ -1,7 +1,8 @@
 
-pub mod dpll = "./dpll.vi";
+mod dpll = "./dpll.vi";
 
 use dpll::cnf::parse_cnf;
+use dpll::Solver;
 
 pub fn main(&io: &IO) {
   let Ok(formula) = parse_cnf(&io) else match {
@@ -11,7 +12,7 @@ pub fn main(&io: &IO) {
     }
   };
 
-  match formula.solve() {
+  match Solver::solve(&formula) {
     Some(solution) {
       io.println("satisfiable");
       io.println("evaluation under model: {formula.evaluate(&solution).show()}");
