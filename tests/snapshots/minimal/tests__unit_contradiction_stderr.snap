@@ -3,12 +3,12 @@ source: tests/tests.rs
 expression: stderr
 ---
 Interactions
-  Total                5_498
+  Total                5_497
     Depth              2_761
     Breadth                1
-  Annihilate           2_795
+  Annihilate           2_796
   Commute                 67
-  Copy                   713
+  Copy                   711
   Erase                  756
   Expand                 416
   Call                   486

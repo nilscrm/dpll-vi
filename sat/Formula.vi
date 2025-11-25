@@ -1,7 +1,7 @@
 
-use std::ops::comparison::Eq;
-use std::debug::Show;
-use sat::Solver::Model;
+use #std::ops::comparison::Eq;
+use #std::debug::Show;
+use Solver::Model;
 
 pub struct* Literal(I32);
 pub struct* Clause(pub List[Literal]);

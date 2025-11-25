@@ -3,20 +3,20 @@ source: tests/tests.rs
 expression: stderr
 ---
 Interactions
-  Total           59_584_116
-    Depth         26_259_942
+  Total           59_351_164
+    Depth         26_067_963
     Breadth                2
-  Annihilate      33_826_797
+  Annihilate      33_495_762
   Commute             87_464
-  Copy             5_554_446
-  Erase            6_724_371
-  Expand           4_758_642
+  Copy             5_552_920
+  Erase            6_790_777
+  Expand           4_791_845
   Call             5_501_870
   Branch           3_130_526
 
 Memory
-  Heap               573_536 B
-  Allocated    1_326_589_824 B
-  Freed        1_326_589_824 B
+  Heap               588_176 B
+  Allocated    1_315_972_288 B
+  Freed        1_315_972_288 B
 
 [Performance...]

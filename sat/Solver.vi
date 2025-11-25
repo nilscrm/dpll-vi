@@ -1,5 +1,5 @@
 
-use std::data::Map;
+use #std::data::Map;
 use sat::Formula::{Clause, Literal};
 
 pub struct* Solver({ model: Model });
