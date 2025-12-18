@@ -13,6 +13,7 @@ fn test_cnf_files(group_name: &str, path: &Path) {
     let stdin = File::open(path).unwrap();
     let output = Command::new("vine")
       .args(["run", "sat/main.vi"])
+      .args(["--lib", "sat/sat.vi"])
       .arg("--breadth-first")
       .stdin(stdin)
       .output()
