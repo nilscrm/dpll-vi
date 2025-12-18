@@ -36,4 +36,4 @@ jobs:
         run: cargo install vine-cli --git https://github.com/VineLang/vine --rev ${{ steps.vine-sha.outputs.sha }}
 
       - name: Run tests
-        run: cargo test
+        run: INSTA_UPDATE=no cargo test
