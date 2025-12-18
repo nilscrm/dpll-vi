@@ -4,19 +4,22 @@ expression: stderr
 ---
 Interactions
   Total           59_351_164
-    Depth         26_067_963
-    Breadth                2
-  Annihilate      33_495_762
+  Annihilate      33_495_766
   Commute             87_464
-  Copy             5_552_920
-  Erase            6_790_777
+  Copy             5_552_917
+  Erase            6_790_776
   Expand           4_791_845
   Call             5_501_870
   Branch           3_130_526
 
+Parallelism
+  Depth           26_067_963
+  Breadth                  2
+  Speedup                 36 cB
+
 Memory
-  Heap               588_176 B
-  Allocated    1_315_972_288 B
-  Freed        1_315_972_288 B
+  Heap               588_192 B
+  Allocated    1_315_972_368 B
+  Freed        1_315_972_368 B
 
 [Performance...]
