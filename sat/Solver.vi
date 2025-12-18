@@ -36,9 +36,9 @@ pub mod Solver {
       break;
     }
 
-    let Some(branch_literal) = formula.choose_literal() else {
+    assert formula.choose_literal() is Some(branch_literal) else {
       return Some(model);
-    };
+    }
 
     let pos_formula = formula.assign(branch_literal);
     let new_solver = self.fork();
@@ -77,10 +77,10 @@ pub mod Solver {
 
     let pure_literals = [];
     for (var, (pos, neg)) in occurrences.into_iter() {
-      if pos && !neg {
+      if pos and !neg {
         pure_literals.push_back(Literal::pos(var));
       }
-      if neg && !pos {
+      if neg and !pos {
         pure_literals.push_back(Literal::neg(var));
       }
     }

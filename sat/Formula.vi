@@ -58,9 +58,9 @@ pub mod Literal {
 
   pub fn .evaluate(&self: &Literal, &assignment: &Model) -> Bool {
     let var = self.variable();
-    let Some(value) = assignment!.get(&var) else {
+    assert assignment!.get(&var) is Some(value) else {
       return false;
-    };
+    }
     if self.is_positive() {
       value
     } else {
