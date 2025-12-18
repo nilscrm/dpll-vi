@@ -1,8 +1,6 @@
 
-mod sat = "./sat.vi";
-
-use sat::cnf::parse_cnf;
-use sat::Solver;
+use #sat::cnf::parse_cnf;
+use #sat::Solver;
 
 pub fn main(&io: &IO) {
   let formula = match parse_cnf(&io) {
@@ -17,11 +15,11 @@ pub fn main(&io: &IO) {
     Some(solution) {
       io.println("satisfiable");
       io.println("evaluation under model: {formula.evaluate(&solution).show()}");
-      for (var, value) in solution!.into_iter() {
+      for (var, value) in solution! {
         io.println("var {var} = {value}");
       }
     }
-    None {
+    None() {
       io.println("unsatisfiable");
     }
   }

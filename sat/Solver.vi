@@ -1,6 +1,7 @@
 
-use #std::data::Map;
-use sat::Formula::{Clause, Literal};
+use #root::data::Map;
+
+use Formula::{Clause, Literal};
 
 pub struct* Solver({ model: Model });
 
@@ -17,8 +18,8 @@ pub mod Solver {
         return Some(model);
       }
 
-      if formula!.iter().any(Clause::is_empty) {
-        return None;
+      if formula!.iter_ref().any(Clause::is_empty) {
+        return None();
       }
 
       if formula.find_unit() is Some(literal) {
@@ -27,7 +28,7 @@ pub mod Solver {
         continue;
       }
 
-      for literal in formula.find_pure().into_iter() {
+      for literal in formula.find_pure() {
         model.insert(literal.variable(), literal.is_positive());
         formula = formula.assign(literal);
         continue;
@@ -53,19 +54,19 @@ pub mod Solver {
       return Some(solution);
     }
 
-    None
+    None()
   }
 
   fn .find_unit(&self: &Formula) -> Option[Literal] {
     self!.find(fn* (&clause: &Clause) { clause.is_unit() }).map(fn? (&clause: &Clause) {
-      clause!.get(0).unwrap()
+      clause!.get(0).assume()
     })
   }
 
   fn .find_pure(&self: &Formula) -> List[Literal] {
     let occurrences = Map::empty[N32, (Bool, Bool)];
-    for &clause in self!.iter() {
-      for &literal in clause!.iter() {
+    for &clause in &self! {
+      for &literal in &clause! {
         let &(pos, neg) = occurrences.at_or_insert(literal.variable(), (false, false));
         if literal.is_positive() {
           pos = true;
@@ -76,7 +77,7 @@ pub mod Solver {
     }
 
     let pure_literals = [];
-    for (var, (pos, neg)) in occurrences.into_iter() {
+    for (var, (pos, neg)) in occurrences {
       if pos and !neg {
         pure_literals.push_back(Literal::pos(var));
       }
@@ -88,17 +89,17 @@ pub mod Solver {
   }
 
   fn .choose_literal(&self: &Formula) -> Option[Literal] {
-    for &clause in self!.iter() {
-      for &literal in clause!.iter() {
+    for &clause in &self! {
+      for &literal in &clause! {
         return Some(literal);
       }
     }
-    None
+    None()
   }
 
   fn .assign(self: Formula, literal: Literal) -> Formula {
     let new_clauses = [];
-    for clause in self!.into_iter() {
+    for clause in self! {
       if clause!.contains(&literal) {
         continue;
       }

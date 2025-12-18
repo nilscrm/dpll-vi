@@ -1,6 +1,7 @@
 
-use #std::ops::comparison::Eq;
-use #std::debug::Show;
+use #root::debug::Show;
+use #root::ops::comparison::Eq;
+
 use Solver::Model;
 
 pub struct* Literal(I32);
@@ -9,7 +10,7 @@ pub struct* Formula(pub List[Clause]);
 
 pub mod Formula {
   pub fn .evaluate(&self: &Formula, &assignment: &Model) -> Bool {
-    self!.iter().all(fn* (&clause: &Clause) { clause.evaluate(&assignment) })
+    self!.iter_ref().all(fn* (&clause: &Clause) { clause.evaluate(&assignment) })
   }
 
   pub fn .is_empty(&self: &Formula) -> Bool {
@@ -21,7 +22,7 @@ pub mod Formula {
 
 pub mod Clause {
   pub fn .evaluate(&self: &Clause, &assignment: &Model) -> Bool {
-    self!.iter().any(fn* (&literal: &Literal) { literal.evaluate(&assignment) })
+    self!.iter_ref().any(fn* (&literal: &Literal) { literal.evaluate(&assignment) })
   }
 
   pub fn .is_empty(&self: &Clause) -> Bool {

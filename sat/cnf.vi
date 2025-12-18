@@ -1,5 +1,5 @@
 
-use sat::Formula::{Clause, Literal};
+use Formula::{Clause, Literal};
 
 pub fn parse_cnf(&io: &IO) -> Result[Formula, String] {
   let num_clauses = read_header(&io).try;
@@ -28,7 +28,7 @@ fn read_header(&io: &IO) -> Result[N32, String] {
       continue;
     }
     if line.starts_with(&"p") {
-      assert line.split_trim(" ").into_iter().last() is Some(num_clauses_str) else {
+      assert line.split_trim(" ").iter().last() is Some(num_clauses_str) else {
         return Err("Invalid header: \"{line}\"");
       }
 
@@ -45,7 +45,7 @@ fn read_header(&io: &IO) -> Result[N32, String] {
 fn parse_cnf_clause(cnf: String) -> Result[Clause, String] {
   let lits = cnf.split_trim(" ");
   let clause = [];
-  for lit in lits.slice(..(lits.len() - 1)).into_iter() {
+  for lit in lits.slice(..(lits.len() - 1)) {
     clause.push_back(parse_cnf_literal(lit).try);
   }
   Ok(Clause(clause))
@@ -54,7 +54,7 @@ fn parse_cnf_clause(cnf: String) -> Result[Clause, String] {
 fn parse_cnf_literal(cnf: String) -> Result[Literal, String] {
   match I32::parse(cnf) {
     Some(int) { Ok(Literal::new(int)) }
-    None {
+    None() {
       return Err("Invalid literal \"{cnf}\"");
     }
   }
