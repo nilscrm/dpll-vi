@@ -5,9 +5,19 @@
     ],
     "words": [
         "disj",
+        "fileset",
         "insta",
+        "nixbuild",
+        "nixfmt",
+        "nixos",
+        "nixpkgs",
+        "numtide",
+        "pkgs",
+        "pname",
         "rstest",
+        "rustc",
         "satlib",
+        "stdenv",
         "unsat"
     ],
     "useGitignore": true
