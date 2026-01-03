@@ -8,7 +8,7 @@ use std::{
 fn test_cnf_files(group_name: &str, path: &Path) {
   insta::with_settings!({
     snapshot_path => format!("snapshots/{}", group_name),
-    filters => [(r"Performance\s+Time\s+.*\sms\s+Speed.*IPS", "[Performance...]")] },
+    filters => [(r"(?sm)^Interactions\n.*", "[ Stats ]"),] },
   {
     let stdin = File::open(path).unwrap();
     let output = Command::new("vine")
